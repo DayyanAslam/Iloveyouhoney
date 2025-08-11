@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Story Cards</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+  }
+
+  /* Flower animation */
+  .flower {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation: fall linear forwards;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+  }
+
+  /* Card styling */
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 90%;
+  }
+  .card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+    animation: fadeIn 0.6s ease;
+    max-width: 500px;
+    width: 100%;
+  }
+  .card img {
+    width: 100%;
+    display: block;
+  }
+  .message {
+    color: pink;
+    font-size: 1.1rem;
+    padding: 15px;
+    background: rgba(255, 182, 193, 0.1);
+    border-radius: 10px;
+    line-height: 1.5;
+    max-width: 500px;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card-container" id="cardContainer">
+  <div class="card">
+    <img src="1.jpg" alt="Love Photo">
+  </div>
+  <div class="message" id="message">You are my sunshine, my happiness, and my love. 💖</div>
+</div>
+
+<script>
+const cards = [
+  { image: '2.jpeg', text: 'Your eyes carry a depth that feels like a story waiting to be told. 💖' },
+  { image: '2.jpeg', text: 'The way your hair catches the light is pure art 🌸' },
+  { image: '3.jpeg', text: 'Your smile melts my heart every single time. ❤️' },
+  { image: '4.jpeg', text: 'Your smile could outshine a sunrise.With you, every day feels like spring. 🌷' },
+  { image: '5.jpeg', text: 'Your skin has the kind of glow no filter can create. 🫀' },
+  { image: '6.jpeg', text: 'Every expression you make feels effortless yet beautiful 🍁' },
+  { image: '7.jpeg', text: 'The way you carry yourself makes heads turn  without even tryingWith you, every day feels like spring. ❤️' },
+  { image: '8.jpeg', text: 'Your beauty isn’t soft — it’s the kind that stops the world mid-breath. 👅' },
+  { image: '9.jpeg', text: 'Your lips could start wars and end them in a single smile.. 👄' },
+  { image: '10.jpeg', text: 'The most beautiful woman in my eyes,everything else seems to disappear. 🍷' },
+];
+
+let currentIndex = 0;
+
+function showNextCard() {
+  currentIndex = (currentIndex + 1) % cards.length;
+  const img = document.querySelector('.card img');
+  const msg = document.getElementById('message');
+  
+  img.src = cards[currentIndex].image;
+  msg.textContent = cards[currentIndex].text;
+}
+
+document.addEventListener('click', showNextCard);
+
+/* Flower falling effect */
+function createFlower() {
+  const flower = document.createElement('div');
+  flower.className = 'flower';
+  flower.style.left = Math.random() * 100 + 'vw';
+  flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  flower.textContent = ['🌸', '🌺', '🌷', '💮', '🌹'][Math.floor(Math.random() * 5)];
+  document.body.appendChild(flower);
+
+  setTimeout(() => flower.remove(), 7000);
+}
+setInterval(createFlower, 400);
+</script>
+
+</body>
+</html>
